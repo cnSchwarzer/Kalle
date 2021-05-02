@@ -75,7 +75,7 @@ abstract class BasicWorker<T extends SimpleRequest, Succeed, Failed>
             }
             Headers headers = response.headers();
             byte[] body = {};
-            if (code != 204) {
+            if (code != 204 && !(response.body().stream() instanceof NullStream)) {
                 body = response.body().byteArray();
             }
             IOUtils.closeQuietly(response);
